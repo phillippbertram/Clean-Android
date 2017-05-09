@@ -12,38 +12,16 @@ public abstract class UseCase<T, Params> {
 
     protected final SchedulerProvider schedulerProvider;
 
-    /**
-     * Konstruktor.
-     *
-     * @param schedulerProvider Der SchedulerProvider.
-     */
     public UseCase(SchedulerProvider schedulerProvider) {
         this.schedulerProvider = schedulerProvider;
     }
 
-    /**
-     * Baut das Observable für den UseCase..
-     *
-     * @return Observable
-     */
     protected abstract Observable<T> buildObservable(Params params);
 
-
-    /**
-     * Liefert das auszuführende Observable.
-     *
-     * @param params Die Parameter
-     * @return Observable.
-     */
     public final Observable<T> get(Params params) {
         return buildObservable(params).compose(applySchedulers()).compose(logAll());
     }
 
-    /**
-     * Sorgt dafür, dass das Observable auf den entsprechenden Threads operiert.
-     *
-     * @return Observable.
-     */
     private ObservableTransformer<T, T> applySchedulers() {
         return observable -> observable.subscribeOn(schedulerProvider.backgroundThreadScheduler())
                 .observeOn(schedulerProvider.mainThreadScheduler());
