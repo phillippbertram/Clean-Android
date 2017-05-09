@@ -1,0 +1,46 @@
+apply plugin: 'com.android.application'
+apply plugin: 'android-apt'
+apply plugin: 'me.tatarka.retrolambda'
+
+android {
+    compileSdkVersion 25
+    buildToolsVersion "25.0.2"
+    defaultConfig {
+        applicationId "de.phillippbertram.cleanandroid"
+        minSdkVersion 21
+        targetSdkVersion 25
+        versionCode 1
+        versionName "1.0.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    packagingOptions {
+        exclude 'META-INF/rxjava.properties'
+
+        // `return void` removes lint error: `Not all execution paths return a value`.
+        return void
+    }
+}
+
+dependencies {
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+    compile project(':domain')
+    compile project(':data')
+    compile project(':common')
+
+    appDependencies.each {
+        add(it.configuration, it.dependency, it.options)
+    }
+
+    appTestDependencies.each {
+        add(it.configuration, it.dependency, it.options)
+    }
+}
+
