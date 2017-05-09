@@ -1,0 +1,149 @@
+ext {
+    // Android
+    def appCompatVersion = "25.3.1"
+    def constraintLayoutVersion = "1.0.2"
+
+    // Third Party
+    def guavaVersion = "20.0"
+    def daggerVersion = "2.10"
+    def daggerAnnotationVersion = "1.0"
+    def butterknifeVersion = "8.5.1"
+    def rxJavaVersion = "2.1.0"
+    def rxAndroidVersion = "2.0.1"
+    def rxJavaRetrofitVersion = "1.0.0"
+    def okHttpVersion = "3.7.0"
+    def retrofitVersion = "2.2.0"
+    def gsonVersion = "2.8.0"
+    def timberVersion = "4.5.1"
+
+    // Testing
+    def jUnitVersion = "4.12"
+    def mockitoVersion = "2.6.5"
+    def hamcrestVersion = "1.3"
+    def espressoVersion = "2.2.2"
+    def androidTestRunnerVersion = "0.5"
+    def androidTestRulesVersion = "0.5"
+    def robolectricVersion = "3.1.4"
+
+    androidLibraries = [
+            appCompat       : [group: 'com.android.support', name: 'appcompat-v7', version: appCompatVersion],
+            appCompatDesign : [group: 'com.android.support', name: 'design', version: appCompatVersion],
+            constraintLayout: [group: 'com.android.support.constraint', name: 'constraint-layout', version: constraintLayoutVersion],
+            appRecyclerView : [group: 'com.android.support', name: 'recyclerview-v7', version: appCompatVersion],
+            appAnnotations  : [group: 'com.android.support', name: 'support-annotations', version: appCompatVersion],
+    ]
+
+    thirdPartyLibraries = [
+            guava              : [group: 'com.google.guava', name: 'guava', version: guavaVersion],
+            dagger             : [group: 'com.google.dagger', name: 'dagger', version: daggerVersion],
+            daggerCompiler     : [group: 'com.google.dagger', name: 'dagger-compiler', version: daggerVersion],
+            daggerAnnotation   : [group: 'javax.annotation', name: 'jsr250-api', version: daggerAnnotationVersion],
+            butterknife        : [group: 'com.jakewharton', name: 'butterknife', version: butterknifeVersion],
+            butterknifeCompiler: [group: 'com.jakewharton', name: 'butterknife-compiler', version: butterknifeVersion],
+            rxjava             : [group: 'io.reactivex.rxjava2', name: 'rxjava', version: rxJavaVersion],
+            rxandroid          : [group: 'io.reactivex.rxjava2', name: 'rxandroid', version: rxAndroidVersion],
+            rxjavaRetrofit     : [group: 'com.jakewharton.retrofit', name: 'retrofit2-rxjava2-adapter', version: rxJavaRetrofitVersion],
+            okhttp             : [group: 'com.squareup.okhttp3', name: 'okhttp', version: okHttpVersion],
+            retrofit           : [group: 'com.squareup.retrofit2', name: 'retrofit', version: retrofitVersion],
+            gsonConverter      : [group: 'com.squareup.retrofit2', name: 'converter-gson', version: retrofitVersion],
+            rxadapter          : [group: 'com.squareup.retrofit2', name: 'adapter-rxjava', version: retrofitVersion],
+            gson               : [group: 'com.google.code.gson', name: 'gson', version: gsonVersion],
+            timber             : [group: 'com.jakewharton.timber', name: 'timber', version: timberVersion],
+    ]
+
+    testingLibraries = [
+            junit      : [group: 'junit', name: 'junit', version: jUnitVersion],
+            mockito    : [group: 'org.mockito', name: 'mockito-core', version: mockitoVersion],
+            hamcrest   : [group: 'org.hamcrest', name: 'hamcrest-library', version: hamcrestVersion],
+            esspresso  : [group: 'com.android.support.test.espresso', name: 'espresso-core', version: espressoVersion],
+            testRunner : [group: 'com.android.support.test', name: 'runner', version: androidTestRunnerVersion],
+            testRules  : [group: 'com.android.support.test', name: 'rules', version: androidTestRulesVersion],
+            robolectric: [group: 'org.robolectric', name: 'robolectric', version: robolectricVersion],
+    ]
+
+    appDependencies = [
+            [configuration: "compile", dependency: androidLibraries.appCompat],
+            [configuration: "compile", dependency: androidLibraries.appCompatDesign],
+            [configuration: "compile", dependency: androidLibraries.constraintLayout],
+            [configuration: "compile", dependency: thirdPartyLibraries.dagger],
+            [configuration: "compile", dependency: thirdPartyLibraries.butterknife],
+            [configuration: "compile", dependency: thirdPartyLibraries.rxjava],
+            [configuration: "compile", dependency: thirdPartyLibraries.rxandroid],
+            [configuration: "compile", dependency: thirdPartyLibraries.okhttp],
+            [configuration: "compile", dependency: thirdPartyLibraries.timber],
+            [configuration: "provided", dependency: thirdPartyLibraries.daggerAnnotation],
+            [configuration: "apt", dependency: thirdPartyLibraries.daggerCompiler],
+            [configuration: "apt", dependency: thirdPartyLibraries.butterknifeCompiler]
+    ]
+
+    appTestDependencies = [
+            [configuration: "testCompile", dependency: testingLibraries.junit],
+            [configuration: "testCompile", dependency: testingLibraries.mockito],
+            [configuration: "testCompile", dependency: testingLibraries.hamcrest],
+            [configuration: "androidTestCompile", dependency: androidLibraries.appAnnotations],
+            [configuration: "androidTestCompile", dependency: testingLibraries.esspresso,
+             options      : {
+                 exclude module: 'support-annotations' exclude module: 'recyclerview-v7'
+                 exclude group: 'com.android.support',
+                         module: 'appcompat'
+                 exclude group: 'com.android.support', module: 'support-v4'
+             }],
+    ]
+
+    dataDependencies = [
+            [configuration: "compile", dependency: androidLibraries.appCompat],
+            [configuration: "compile", dependency: thirdPartyLibraries.rxjava],
+            [configuration: "compile", dependency: thirdPartyLibraries.rxandroid],
+            [configuration: "compile", dependency: thirdPartyLibraries.okhttp],
+            [configuration: "compile", dependency: thirdPartyLibraries.timber],
+            [configuration: "compile", dependency: thirdPartyLibraries.rxjavaRetrofit]
+    ]
+
+    dataTestDependencies = [
+            [configuration: "testCompile", dependency: testingLibraries.junit],
+            [configuration: "testCompile", dependency: testingLibraries.mockito],
+            [configuration: "testCompile", dependency: testingLibraries.hamcrest],
+            [configuration: "testCompile", dependency: testingLibraries.testRunner],
+            [configuration: "testCompile", dependency: testingLibraries.testRules],
+            [configuration: "testCompile", dependency: testingLibraries.robolectric],
+            [configuration: "androidTestCompile", dependency: testingLibraries.testRunner],
+            [configuration: "androidTestCompile", dependency: testingLibraries.testRules],
+            [configuration: "androidTestCompile", dependency: testingLibraries.hamcrest],
+            [configuration: "androidTestCompile", dependency: testingLibraries.mockito],
+            [configuration: "androidTestCompile", dependency: testingLibraries.esspresso,
+             options      : { exclude module: 'support-annotations' }]
+    ]
+
+    domainDependencies = [
+            [configuration: "compile", dependency: androidLibraries.appCompat],
+            [configuration: "compile", dependency: thirdPartyLibraries.guava],
+            [configuration: "compile", dependency: thirdPartyLibraries.rxjava],
+            [configuration: "compile", dependency: thirdPartyLibraries.okhttp],
+            [configuration: "compile", dependency: thirdPartyLibraries.retrofit],
+            [configuration: "compile", dependency: thirdPartyLibraries.rxadapter],
+            [configuration: "compile", dependency: thirdPartyLibraries.gsonConverter],
+            [configuration: "compile", dependency: thirdPartyLibraries.timber],
+    ]
+
+    domainTestDependencies = [
+            [configuration: "testCompile", dependency: testingLibraries.junit],
+            [configuration: "testCompile", dependency: testingLibraries.mockito],
+            [configuration: "testCompile", dependency: testingLibraries.hamcrest]
+    ]
+
+    entitiesDependencies = [
+            [configuration: "compile", dependency: thirdPartyLibraries.gson]
+    ]
+
+    entitiesTestDependencies = [
+            [configuration: "testCompile", dependency: testingLibraries.junit],
+            [configuration: "testCompile", dependency: testingLibraries.mockito],
+            [configuration: "testCompile", dependency: testingLibraries.hamcrest],
+    ]
+
+    commonDependencies = [
+            [configuration: "compile", dependency: androidLibraries.appCompat],
+            [configuration: "compile", dependency: thirdPartyLibraries.rxjava],
+            [configuration: "compile", dependency: thirdPartyLibraries.guava],
+    ]
+}
