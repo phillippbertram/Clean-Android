@@ -7,12 +7,10 @@ import com.trello.rxlifecycle2.RxLifecycle
 import de.phillippbertram.cleanandroid.internal.mvp.PresenterLifecycle.STARTED
 import de.phillippbertram.cleanandroid.internal.mvp.PresenterLifecycle.STOPPED
 
-
 /**
  * @author [PBE] Phillipp Bertram | phillipp.bertram@lmis.de
  */
-
-abstract class RxPresenter<V : View> : Presenter<V>() {
+abstract class RxPresenter<in V : View> : Presenter<V>() {
 
     private val presenterLifecycle = BehaviorRelay.createDefault(STOPPED)
 
@@ -30,7 +28,6 @@ abstract class RxPresenter<V : View> : Presenter<V>() {
         return RxLifecycle.bind<T, PresenterLifecycle>(presenterLifecycle) { lifecycle ->
             when (lifecycle) {
                 STARTED -> STOPPED
-                STOPPED -> STARTED
                 else -> STARTED
             }
         }

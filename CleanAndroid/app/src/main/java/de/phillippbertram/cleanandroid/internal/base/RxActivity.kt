@@ -8,7 +8,7 @@ import de.phillippbertram.cleanandroid.internal.mvp.View
 /**
  * @author [PBE] Phillipp Bertram | phillipp.bertram@lmis.de
  */
-abstract class RxActivity<V : View, P : Presenter<V>> : RxAppCompatActivity(), View {
+abstract class RxActivity<in V : View, P : Presenter<V>> : RxAppCompatActivity(), View {
 
     protected lateinit var presenter: P
 
