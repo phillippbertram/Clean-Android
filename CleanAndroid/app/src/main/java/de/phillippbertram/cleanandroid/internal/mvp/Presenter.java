@@ -9,13 +9,11 @@ import java.lang.ref.WeakReference;
 
 public abstract class Presenter<V extends View> {
 
-
     /**
      * Die View für den verwendeten Presenter.
      */
     @Nullable
     private WeakReference<V> viewRef;
-
 
     public void bind(V view) {
         viewRef = new WeakReference<>(view);

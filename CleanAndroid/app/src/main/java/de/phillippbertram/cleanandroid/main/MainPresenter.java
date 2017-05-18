@@ -7,8 +7,7 @@ import java.util.concurrent.TimeUnit;
 /**
  * @author [PBE] Phillipp Bertram | phillipp.bertram@lmis.de
  */
-
-final class MainPresenter extends RxPresenter<MainView> {
+final public class MainPresenter extends RxPresenter<MainView> {
 
     MainPresenter() {
         Observable.interval(1, TimeUnit.SECONDS).compose(bindToLifecycle()).subscribe();
