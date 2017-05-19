@@ -2,14 +2,23 @@ package de.phillippbertram.cleanandroid.main
 
 import de.phillippbertram.cleanandroid.internal.mvp.RxPresenter
 import io.reactivex.Observable
-import java.util.concurrent.TimeUnit
+import io.reactivex.disposables.CompositeDisposable
+import io.reactivex.disposables.Disposable
+
 
 /**
  * @author [PBE] Phillipp Bertram | phillipp.bertram@lmis.de
  */
 class MainPresenter internal constructor() : RxPresenter<MainView>() {
 
+    private val disposables: CompositeDisposable = CompositeDisposable()
+
     init {
-        Observable.interval(1, TimeUnit.SECONDS).compose(bindToLifecycle<Long>()).subscribe()
+        registerDisposable(Observable.just(2).subscribe())
+    }
+
+
+    private fun registerDisposable(disposable: Disposable) {
+        disposables.add(disposable)
     }
 }

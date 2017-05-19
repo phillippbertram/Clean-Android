@@ -8,7 +8,7 @@ import de.phillippbertram.cleanandroid.R
 import de.phillippbertram.cleanandroid.chat.ChatListActivity
 import de.phillippbertram.cleanandroid.internal.base.RxActivity
 
-class MainActivity : RxActivity<MainView, MainPresenter>() {
+open class MainActivity : RxActivity<MainView, MainPresenter>() {
 
     override fun createPresenter(): MainPresenter {
         return MainPresenter()
@@ -21,7 +21,7 @@ class MainActivity : RxActivity<MainView, MainPresenter>() {
     }
 
     @OnClick(R.id.detailButton)
-    fun onDetailButtonClicked() {
+    open fun onDetailButtonClicked() {
         val intent = Intent(this, ChatListActivity::class.java)
         startActivity(intent)
     }

@@ -23,6 +23,4 @@ abstract class Presenter<in V : View> {
             viewRef = null
         }
     }
-
-
 }
