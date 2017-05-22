@@ -12,7 +12,7 @@ import de.phillippbertram.cleanandroid.internal.mvp.PresenterLifecycle.STOPPED
  */
 abstract class RxPresenter<in V : View> : Presenter<V>() {
 
-    protected val presenterLifecycle = BehaviorRelay.createDefault(STOPPED)
+    protected val presenterLifecycle: BehaviorRelay<PresenterLifecycle> = BehaviorRelay.createDefault(STOPPED)
 
     override fun bind(view: V) {
         super.bind(view)

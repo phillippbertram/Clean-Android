@@ -9,16 +9,4 @@ import io.reactivex.disposables.Disposable
 /**
  * @author [PBE] Phillipp Bertram | phillipp.bertram@lmis.de
  */
-class MainPresenter internal constructor() : RxPresenter<MainView>() {
-
-    private val disposables: CompositeDisposable = CompositeDisposable()
-
-    init {
-        registerDisposable(Observable.just(2).subscribe())
-    }
-
-
-    private fun registerDisposable(disposable: Disposable) {
-        disposables.add(disposable)
-    }
-}
+class MainPresenter internal constructor() : RxPresenter<MainView>()

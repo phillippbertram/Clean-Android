@@ -1,12 +1,12 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
-apply plugin: 'android-apt'
+//apply plugin: 'kotlin-kapt'
 apply plugin: 'me.tatarka.retrolambda'
-apply plugin: 'com.jakewharton.butterknife'
 
 android {
     compileSdkVersion 25
-    buildToolsVersion "25.0.2"
+    buildToolsVersion "25.0.3"
+
     defaultConfig {
         applicationId "de.phillippbertram.cleanandroid"
         minSdkVersion 21
@@ -40,6 +40,11 @@ android {
     }
 }
 
+//ButterKnife For Kotlin
+kapt {
+    generateStubs = true
+}
+
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     compile project(':domain')
@@ -55,14 +60,20 @@ dependencies {
     appTestDependencies.each {
         add(it.configuration, it.dependency, it.options)
     }
+
+    // Kotlin
+    compile "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
+
+
+    // RxLifecycle
     compile 'com.trello.rxlifecycle2:rxlifecycle:2.0.1'
     compile 'com.trello.rxlifecycle2:rxlifecycle-android:2.0.1'
     compile 'com.trello.rxlifecycle2:rxlifecycle-components:2.0.1'
     compile 'com.trello.rxlifecycle2:rxlifecycle-kotlin:2.0.1'
     compile 'com.jakewharton.rxrelay2:rxrelay:2.0.0'
 
-    compile "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
 }
+
 repositories {
     mavenCentral()
 }
