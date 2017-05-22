@@ -7,7 +7,7 @@ ext {
     def guavaVersion = "20.0"
     def daggerVersion = "2.10"
     def daggerAnnotationVersion = "1.0"
-    def butterknifeVersion = "8.5.1"
+    def butterknifeVersion = "8.6.0"
     def rxJavaVersion = "2.1.0"
     def rxAndroidVersion = "2.0.1"
     def rxJavaRetrofitVersion = "1.0.0"
@@ -72,8 +72,8 @@ ext {
             [configuration: "compile", dependency: thirdPartyLibraries.okhttp],
             [configuration: "compile", dependency: thirdPartyLibraries.timber],
             [configuration: "provided", dependency: thirdPartyLibraries.daggerAnnotation],
-            [configuration: "apt", dependency: thirdPartyLibraries.daggerCompiler],
-            [configuration: "apt", dependency: thirdPartyLibraries.butterknifeCompiler]
+            [configuration: "kapt", dependency: thirdPartyLibraries.daggerCompiler],
+            [configuration: "kapt", dependency: thirdPartyLibraries.butterknifeCompiler]
     ]
 
     appTestDependencies = [
