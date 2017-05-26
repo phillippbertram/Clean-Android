@@ -2,6 +2,7 @@ ext {
     // Android
     def appCompatVersion = "25.3.1"
     def constraintLayoutVersion = "1.0.2"
+    def kotlinVersion = "1.1.2-4"
 
     // Third Party
     def guavaVersion = "20.0"
@@ -11,6 +12,8 @@ ext {
     def rxJavaVersion = "2.1.0"
     def rxAndroidVersion = "2.0.1"
     def rxJavaRetrofitVersion = "1.0.0"
+    def rxLifecycleVersion = "2.0.1"
+    def rxRelayVersion = "2.0.0"
     def okHttpVersion = "3.7.0"
     def retrofitVersion = "2.2.0"
     def gsonVersion = "2.8.0"
@@ -31,24 +34,30 @@ ext {
             constraintLayout: [group: 'com.android.support.constraint', name: 'constraint-layout', version: constraintLayoutVersion],
             appRecyclerView : [group: 'com.android.support', name: 'recyclerview-v7', version: appCompatVersion],
             appAnnotations  : [group: 'com.android.support', name: 'support-annotations', version: appCompatVersion],
+            kotlin          : [group: 'org.jetbrains.kotlin', name: 'kotlin-stdlib-jre7', version: kotlinVersion]
     ]
 
     thirdPartyLibraries = [
-            guava              : [group: 'com.google.guava', name: 'guava', version: guavaVersion],
-            dagger             : [group: 'com.google.dagger', name: 'dagger', version: daggerVersion],
-            daggerCompiler     : [group: 'com.google.dagger', name: 'dagger-compiler', version: daggerVersion],
-            daggerAnnotation   : [group: 'javax.annotation', name: 'jsr250-api', version: daggerAnnotationVersion],
-            butterknife        : [group: 'com.jakewharton', name: 'butterknife', version: butterknifeVersion],
-            butterknifeCompiler: [group: 'com.jakewharton', name: 'butterknife-compiler', version: butterknifeVersion],
-            rxjava             : [group: 'io.reactivex.rxjava2', name: 'rxjava', version: rxJavaVersion],
-            rxandroid          : [group: 'io.reactivex.rxjava2', name: 'rxandroid', version: rxAndroidVersion],
-            rxjavaRetrofit     : [group: 'com.jakewharton.retrofit', name: 'retrofit2-rxjava2-adapter', version: rxJavaRetrofitVersion],
-            okhttp             : [group: 'com.squareup.okhttp3', name: 'okhttp', version: okHttpVersion],
-            retrofit           : [group: 'com.squareup.retrofit2', name: 'retrofit', version: retrofitVersion],
-            gsonConverter      : [group: 'com.squareup.retrofit2', name: 'converter-gson', version: retrofitVersion],
-            rxadapter          : [group: 'com.squareup.retrofit2', name: 'adapter-rxjava', version: retrofitVersion],
-            gson               : [group: 'com.google.code.gson', name: 'gson', version: gsonVersion],
-            timber             : [group: 'com.jakewharton.timber', name: 'timber', version: timberVersion],
+            guava                : [group: 'com.google.guava', name: 'guava', version: guavaVersion],
+            dagger               : [group: 'com.google.dagger', name: 'dagger', version: daggerVersion],
+            daggerCompiler       : [group: 'com.google.dagger', name: 'dagger-compiler', version: daggerVersion],
+            daggerAnnotation     : [group: 'javax.annotation', name: 'jsr250-api', version: daggerAnnotationVersion],
+            butterknife          : [group: 'com.jakewharton', name: 'butterknife', version: butterknifeVersion],
+            butterknifeCompiler  : [group: 'com.jakewharton', name: 'butterknife-compiler', version: butterknifeVersion],
+            rxJava               : [group: 'io.reactivex.rxjava2', name: 'rxjava', version: rxJavaVersion],
+            rxAndroid            : [group: 'io.reactivex.rxjava2', name: 'rxandroid', version: rxAndroidVersion],
+            rxJavaRetrofit       : [group: 'com.jakewharton.retrofit', name: 'retrofit2-rxjava2-adapter', version: rxJavaRetrofitVersion],
+            rxLifecycle          : [group: 'com.trello.rxlifecycle2', name: 'rxlifecycle', version: rxLifecycleVersion],
+            rxLifecycleAndroid   : [group: 'com.trello.rxlifecycle2', name: 'rxlifecycle-android', version: rxLifecycleVersion],
+            rxLifecycleComponents: [group: 'com.trello.rxlifecycle2', name: 'rxlifecycle-components', version: rxLifecycleVersion],
+            rxLifecycleKotlin    : [group: 'com.trello.rxlifecycle2', name: 'rxlifecycle-kotlin', version: rxLifecycleVersion],
+            rxRelay              : [group: 'com.jakewharton.rxrelay2', name: 'rxrelay', version: rxRelayVersion],
+            okhttp               : [group: 'com.squareup.okhttp3', name: 'okhttp', version: okHttpVersion],
+            retrofit             : [group: 'com.squareup.retrofit2', name: 'retrofit', version: retrofitVersion],
+            gsonConverter        : [group: 'com.squareup.retrofit2', name: 'converter-gson', version: retrofitVersion],
+            rxadapter            : [group: 'com.squareup.retrofit2', name: 'adapter-rxjava', version: retrofitVersion],
+            gson                 : [group: 'com.google.code.gson', name: 'gson', version: gsonVersion],
+            timber               : [group: 'com.jakewharton.timber', name: 'timber', version: timberVersion],
     ]
 
     testingLibraries = [
@@ -65,10 +74,16 @@ ext {
             [configuration: "compile", dependency: androidLibraries.appCompat],
             [configuration: "compile", dependency: androidLibraries.appCompatDesign],
             [configuration: "compile", dependency: androidLibraries.constraintLayout],
+            [configuration: "compile", dependency: androidLibraries.kotlin],
             [configuration: "compile", dependency: thirdPartyLibraries.dagger],
             [configuration: "compile", dependency: thirdPartyLibraries.butterknife],
-            [configuration: "compile", dependency: thirdPartyLibraries.rxjava],
-            [configuration: "compile", dependency: thirdPartyLibraries.rxandroid],
+            [configuration: "compile", dependency: thirdPartyLibraries.rxJava],
+            [configuration: "compile", dependency: thirdPartyLibraries.rxAndroid],
+            [configuration: "compile", dependency: thirdPartyLibraries.rxLifecycle],
+            [configuration: "compile", dependency: thirdPartyLibraries.rxLifecycleAndroid],
+            [configuration: "compile", dependency: thirdPartyLibraries.rxLifecycleComponents],
+            [configuration: "compile", dependency: thirdPartyLibraries.rxLifecycleKotlin],
+            [configuration: "compile", dependency: thirdPartyLibraries.rxRelay],
             [configuration: "compile", dependency: thirdPartyLibraries.okhttp],
             [configuration: "compile", dependency: thirdPartyLibraries.timber],
             [configuration: "provided", dependency: thirdPartyLibraries.daggerAnnotation],
@@ -92,11 +107,11 @@ ext {
 
     dataDependencies = [
             [configuration: "compile", dependency: androidLibraries.appCompat],
-            [configuration: "compile", dependency: thirdPartyLibraries.rxjava],
-            [configuration: "compile", dependency: thirdPartyLibraries.rxandroid],
+            [configuration: "compile", dependency: thirdPartyLibraries.rxJava],
+            [configuration: "compile", dependency: thirdPartyLibraries.rxAndroid],
             [configuration: "compile", dependency: thirdPartyLibraries.okhttp],
             [configuration: "compile", dependency: thirdPartyLibraries.timber],
-            [configuration: "compile", dependency: thirdPartyLibraries.rxjavaRetrofit]
+            [configuration: "compile", dependency: thirdPartyLibraries.rxJavaRetrofit]
     ]
 
     dataTestDependencies = [
@@ -116,8 +131,9 @@ ext {
 
     domainDependencies = [
             [configuration: "compile", dependency: androidLibraries.appCompat],
+            [configuration: "compile", dependency: androidLibraries.kotlin],
             [configuration: "compile", dependency: thirdPartyLibraries.guava],
-            [configuration: "compile", dependency: thirdPartyLibraries.rxjava],
+            [configuration: "compile", dependency: thirdPartyLibraries.rxJava],
             [configuration: "compile", dependency: thirdPartyLibraries.okhttp],
             [configuration: "compile", dependency: thirdPartyLibraries.retrofit],
             [configuration: "compile", dependency: thirdPartyLibraries.rxadapter],
@@ -143,7 +159,16 @@ ext {
 
     commonDependencies = [
             [configuration: "compile", dependency: androidLibraries.appCompat],
-            [configuration: "compile", dependency: thirdPartyLibraries.rxjava],
+            [configuration: "compile", dependency: androidLibraries.kotlin],
+            [configuration: "compile", dependency: thirdPartyLibraries.rxJava],
             [configuration: "compile", dependency: thirdPartyLibraries.guava],
+    ]
+
+    commonTestDependencies = [
+            [configuration: "testCompile", dependency: testingLibraries.junit],
+            [configuration: "androidTestCompile", dependency: testingLibraries.esspresso,
+             options      : {
+                 exclude group: 'com.android.support', module: 'support-annotations'
+             }]
     ]
 }
