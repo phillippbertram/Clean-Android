@@ -45,8 +45,8 @@ captures/
 # External native build folder generated in Android Studio 2.2 and later
 .externalNativeBuild
 
-# Google Services (e.g. APIs or Firebase)
-google-services.json
+# Google Services (e.g. APIs or Firebase). Only if it could be an security issue (e.g. public repo) since several API keys are visible within this file.
+# google-services.json
 
 # OS-specific files
 .DS_Store
