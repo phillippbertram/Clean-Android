@@ -38,6 +38,7 @@ captures/
 .idea/dictionaries
 .idea/misc.xml
 .idea/modules.xml
+.idea/checkstyle-idea.xml
 
 # Keystore files
 *.jks
