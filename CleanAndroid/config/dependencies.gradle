@@ -2,7 +2,9 @@ ext {
     // Android
     def appCompatVersion = "25.3.1"
     def constraintLayoutVersion = "1.0.2"
-    def kotlinVersion = "1.1.2-4"
+    def kotlinVersion = "1.1.2-5"
+    def roomVersion = "1.0.0-alpha1"
+    def lifecycleVersion = "1.0.0-alpha1"
 
     // Third Party
     def guavaVersion = "20.0"
@@ -29,12 +31,19 @@ ext {
     def robolectricVersion = "3.1.4"
 
     androidLibraries = [
-            appCompat       : [group: 'com.android.support', name: 'appcompat-v7', version: appCompatVersion],
-            appCompatDesign : [group: 'com.android.support', name: 'design', version: appCompatVersion],
-            constraintLayout: [group: 'com.android.support.constraint', name: 'constraint-layout', version: constraintLayoutVersion],
-            appRecyclerView : [group: 'com.android.support', name: 'recyclerview-v7', version: appCompatVersion],
-            appAnnotations  : [group: 'com.android.support', name: 'support-annotations', version: appCompatVersion],
-            kotlin          : [group: 'org.jetbrains.kotlin', name: 'kotlin-stdlib-jre7', version: kotlinVersion]
+            appCompat          : [group: 'com.android.support', name: 'appcompat-v7', version: appCompatVersion],
+            appCompatDesign    : [group: 'com.android.support', name: 'design', version: appCompatVersion],
+            constraintLayout   : [group: 'com.android.support.constraint', name: 'constraint-layout', version: constraintLayoutVersion],
+            appRecyclerView    : [group: 'com.android.support', name: 'recyclerview-v7', version: appCompatVersion],
+            appAnnotations     : [group: 'com.android.support', name: 'support-annotations', version: appCompatVersion],
+            kotlin             : [group: 'org.jetbrains.kotlin', name: 'kotlin-stdlib-jre7', version: kotlinVersion],
+            roomRuntime        : [group: 'android.arch.persistence.room', name: 'runtime', version: roomVersion],
+            roomrxJava2        : [group: 'android.arch.persistence.room', name: 'rxjava2', version: roomVersion],
+            roomCompiler       : [group: 'android.arch.persistence.room', name: 'compiler', version: roomVersion],
+            lifecycleRuntime   : [group: 'android.arch.lifecycle', name: 'runtime', version: lifecycleVersion],
+            lifecycleExtensions: [group: 'android.arch.lifecycle', name: 'extensions', version: lifecycleVersion],
+            lifecycleCompiler  : [group: 'android.arch.lifecycle', name: 'compiler', version: lifecycleVersion]
+
     ]
 
     thirdPartyLibraries = [
@@ -75,6 +84,10 @@ ext {
             [configuration: "compile", dependency: androidLibraries.appCompatDesign],
             [configuration: "compile", dependency: androidLibraries.constraintLayout],
             [configuration: "compile", dependency: androidLibraries.kotlin],
+            [configuration: "compile", dependency: androidLibraries.roomRuntime],
+            [configuration: "compile", dependency: androidLibraries.roomrxJava2],
+            [configuration: "compile", dependency: androidLibraries.lifecycleExtensions],
+            [configuration: "compile", dependency: androidLibraries.lifecycleRuntime],
             [configuration: "compile", dependency: thirdPartyLibraries.dagger],
             [configuration: "compile", dependency: thirdPartyLibraries.butterknife],
             [configuration: "compile", dependency: thirdPartyLibraries.rxJava],
@@ -88,7 +101,9 @@ ext {
             [configuration: "compile", dependency: thirdPartyLibraries.timber],
             [configuration: "provided", dependency: thirdPartyLibraries.daggerAnnotation],
             [configuration: "kapt", dependency: thirdPartyLibraries.daggerCompiler],
-            [configuration: "kapt", dependency: thirdPartyLibraries.butterknifeCompiler]
+            [configuration: "kapt", dependency: thirdPartyLibraries.butterknifeCompiler],
+            [configuration: "kapt", dependency: androidLibraries.roomCompiler],
+            [configuration: "annotationProcessor", dependency: androidLibraries.lifecycleCompiler],
     ]
 
     appTestDependencies = [
@@ -107,11 +122,19 @@ ext {
 
     dataDependencies = [
             [configuration: "compile", dependency: androidLibraries.appCompat],
+            [configuration: "compile", dependency: androidLibraries.kotlin],
             [configuration: "compile", dependency: thirdPartyLibraries.rxJava],
             [configuration: "compile", dependency: thirdPartyLibraries.rxAndroid],
             [configuration: "compile", dependency: thirdPartyLibraries.okhttp],
             [configuration: "compile", dependency: thirdPartyLibraries.timber],
-            [configuration: "compile", dependency: thirdPartyLibraries.rxJavaRetrofit]
+            [configuration: "compile", dependency: thirdPartyLibraries.rxJavaRetrofit],
+            [configuration: "compile", dependency: androidLibraries.roomRuntime],
+            [configuration: "compile", dependency: androidLibraries.roomrxJava2],
+            [configuration: "kapt", dependency: androidLibraries.roomCompiler],
+            [configuration: "compile", dependency: androidLibraries.lifecycleExtensions],
+            [configuration: "compile", dependency: androidLibraries.lifecycleRuntime],
+            [configuration: "annotationProcessor", dependency: androidLibraries.lifecycleCompiler]
+
     ]
 
     dataTestDependencies = [
@@ -148,7 +171,10 @@ ext {
     ]
 
     entitiesDependencies = [
-            [configuration: "compile", dependency: thirdPartyLibraries.gson]
+            [configuration: "compile", dependency: thirdPartyLibraries.gson],
+            [configuration: "compile", dependency: androidLibraries.roomRuntime],
+            [configuration: "compile", dependency: androidLibraries.roomrxJava2],
+            [configuration: "kapt", dependency: androidLibraries.roomCompiler],
     ]
 
     entitiesTestDependencies = [
